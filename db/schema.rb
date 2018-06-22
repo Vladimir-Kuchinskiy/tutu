@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 20_180_621_090_908) do
     t.datetime 'updated_at', null: false
   end
 
+  create_table 'routes', force: :cascade do |t|
+    t.string 'name'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+  end
+
   create_table 'trains', force: :cascade do |t|
     t.string 'number'
     t.datetime 'created_at', null: false

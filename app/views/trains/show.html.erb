@@ -6,6 +6,32 @@
 </p>
 
 <p>
+  <strong>Compartment Carriages Count:</strong>
+  <%= @train.carriages.compartment.count %>
+</p>
+
+<p>
+  <strong>Reserved Seat Carriages Count:</strong>
+  <%= @train.carriages.reserved_seat.count %>
+</p>
+
+<% if @train.carriages.compartment.any? %>
+  <p>
+    <strong>Compartment Carriages:</strong>
+    <p>Up seats count: <%= @train.carriages.compartment.map(&:up_seats).inject(:+) %></p>
+    <p>Down seats count: <%= @train.carriages.compartment.map(&:down_seats).inject(:+) %></p>
+  </p>
+<% end %>
+
+<% if @train.carriages.reserved_seat.any? %>
+  <p>
+    <strong>Reserved Seat:</strong>
+    <p>Up seats count: <%= @train.carriages.reserved_seat.map(&:up_seats).inject(:+) %></p>
+    <p>Down seats count: <%= @train.carriages.reserved_seat.map(&:down_seats).inject(:+) %></p>
+  </p>
+<% end %>
+
+<p>
   <strong>Current Station:</strong>
   <% if @train.current_station.present? %>
     <%= @train.current_station.title %>

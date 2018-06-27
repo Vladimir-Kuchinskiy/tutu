@@ -8,7 +8,7 @@
 
   <div class="field">
     <%= form.label :train_id %>
-    <%= form.collection_select :kind, Carriage.kinds, :first, :first %>
+    <%= form.select :kind, Carriage.kinds.keys.map(&:titleize) %>
   </div>
 
   <div class="field">

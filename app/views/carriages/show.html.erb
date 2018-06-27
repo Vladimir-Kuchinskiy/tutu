@@ -2,12 +2,17 @@
 
 <p>
   <strong>Train:</strong>
-  <%= @carriage.train.number %>
+  <%= link_to @carriage.train.number.to_s, @carriage.train %>
 </p>
 
 <p>
   <strong>Type:</strong>
   <%= @carriage.type.titleize %>
+</p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @carriage.number %>
 </p>
 
 <p>

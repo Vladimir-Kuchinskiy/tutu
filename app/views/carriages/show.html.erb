@@ -6,19 +6,31 @@
 </p>
 
 <p>
-  <strong>Kind:</strong>
-  <%= @carriage.kind.titleize %>
+  <strong>Type:</strong>
+  <%= @carriage.type.titleize %>
 </p>
 
 <p>
-  <strong>Up Seats:</strong>
-  <%= @carriage.up_seats %>
+  <strong>Top Seats:</strong>
+  <%= @carriage.top_seats %>
 </p>
 
 <p>
-  <strong>Down Seats:</strong>
-  <%= @carriage.down_seats %>
+  <strong>Bottom Seats:</strong>
+  <%= @carriage.bottom_seats %>
 </p>
+
+<% if @carriage.type == 'EconomyCarriage' %>
+  <p>
+    <strong>Side Top Seats:</strong>
+    <%= @carriage.side_top_seats %>
+  </p>
+
+  <p>
+    <strong>Side Bottom Seats:</strong>
+    <%= @carriage.side_bottom_seats %>
+  </p>
+<% end %>
 
 
 

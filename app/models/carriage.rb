@@ -1,5 +1,12 @@
 class Carriage < ApplicationRecord
+
+  TYPES = %w[EconomyCarriage CoupeCarriage].freeze
+
   belongs_to :train
-  enum kind: %i[compartment reserved_seat]
-  validates :kind, :up_seats, :down_seats, presence: true
+
+  validates :number, :top_seats, :bottom_seats, :type, presence: true
+
+  scope :economy, -> { where(type: 'EconomyCarriage') }
+  scope :coupe,   -> { where(type: 'CoupeCarriage') }
+  scope :ordered, -> { order(:number) }
 end

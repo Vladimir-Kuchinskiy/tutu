@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CarriagesController < ApplicationController
   before_action :set_carriage, only: %i[show edit update destroy]
 

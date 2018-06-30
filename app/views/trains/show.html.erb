@@ -50,6 +50,10 @@
   <% end %>
 </p>
 
+<p>
+  <%= link_to 'Add Carriage', new_train_carriage_path(@train) %>
+</p>
+
 <% if @train.carriages.any? %>
   <table>
     <thead>
@@ -58,7 +62,7 @@
     <tbody>
     <% @train.carriages.ordered(@train).each do |carriage| %>
       <tr>
-        <td><%= link_to carriage.number.to_s, carriage.becomes(Carriage) %></td>
+        <td><%= link_to "Carriage ##{carriage.number}", carriage.becomes(Carriage) %></td>
       </tr>
     <% end %>
     </tbody>

@@ -20,11 +20,20 @@
   <p>Route has no stations</p>
 <% else %>
   <p>Route has such stations:</p>
-  <ul>
-    <% @route.railway_stations_routes.ordered.each do |rs_route| %>
-      <li><%= rs_route.railway_station.title %> | <%= rs_route.serial_number %></li>
-    <% end %>
-  </ul>
+  <table>
+    <thead>
+      <th>Title</th>
+      <th>Serial Number</th>
+    </thead>
+    <tbody>
+      <% @route.railway_stations_routes.ordered.each do |rs_route| %>
+        <tr>
+          <td><%= rs_route.railway_station.title %></td>
+          <td><%= rs_route.serial_number %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
 
 <%= link_to 'Edit', edit_route_path(@route) %> |

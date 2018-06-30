@@ -17,6 +17,6 @@ class Carriage < ApplicationRecord
   private
 
   def add_number
-    self.number = (train.carriages.last.try(:number) || 0) + 1
+    self.number = (train.carriages[-2].try(:number) || 0) + 1
   end
 end

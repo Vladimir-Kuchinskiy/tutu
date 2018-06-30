@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RailwayStationsController < ApplicationController
-  before_action :set_railway_station, only: %i[show edit update destroy]
+  before_action :set_railway_station, only: %i[show edit update destroy update_position]
 
   # GET /railway_stations
   # GET /railway_stations.json
@@ -47,6 +47,12 @@ class RailwayStationsController < ApplicationController
   def destroy
     @railway_station.destroy
     redirect_to railway_stations_url, notice: 'Railway station was successfully destroyed.'
+  end
+
+  def update_position
+    @route = Route.find(params[:route_id])
+    @railway_station.update_serial_number(@route, params[:serial_number])
+    redirect_to @route
   end
 
   private

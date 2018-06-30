@@ -1,10 +1,5 @@
-<%= form_with(model: carriage.becomes(Carriage), local: true) do |form| %>
+<%= form_with(model: [@train, @carriage.becomes(Carriage)], local: true) do |form| %>
   <%= render 'common/errors', resource: carriage %>
-
-  <div class="field">
-    <%= form.label :train_id %>
-    <%= form.collection_select :train_id, Train.all, :id, :number %>
-  </div>
 
   <div class="field">
     <%= form.label :type %>

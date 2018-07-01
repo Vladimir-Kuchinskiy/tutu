@@ -7,3 +7,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Route.all.map do |route|
+  route.railway_stations_routes.update(departure_time: Time.now, arrival_time: Time.now + 1.day)
+end

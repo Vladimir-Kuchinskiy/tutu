@@ -10,7 +10,6 @@ class CreateCarriages < ActiveRecord::Migration[5.2]
       t.integer    :side_bottom_seats
       t.belongs_to :train
       t.string     :type
-
       t.timestamps
     end
   end

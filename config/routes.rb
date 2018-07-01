@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'tickets/new'
+  get 'tickets/show'
+  get 'tickets/create'
+  get 'searches/show'
+  get 'searches/search'
   resources :trains do
     resources :carriages, shallow: true
   end
@@ -11,7 +16,11 @@ Rails.application.routes.draw do
 
   resources :routes
 
-  resource :search, only: [:new, :show, :edit]
+  resource :search, only: [:new, :show, :edit] do
+    post '/' => 'searches#search'
+  end
+
+  resources :tickets, shallow: true
 
   root 'welcome#index'
 end

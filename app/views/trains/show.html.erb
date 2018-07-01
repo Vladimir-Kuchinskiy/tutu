@@ -4,33 +4,36 @@
   <%= @train.number %>
 </p>
 
-<p>
-  <strong>Coupe Carriages Count:</strong>
-  <%= @train.carriages.coupe.count %>
-</p>
-
-<p>
-  <strong>Economy Carriages Count:</strong>
-  <%= @train.carriages.economy.count %>
-</p>
-
-<% if @train.carriages.coupe.any? %>
+<% if @train.carriages.any? %>
   <p>
-    <strong>Coupe Carriages:</strong>
-  <p>Top seats count: <%= @train.carriages.coupe.map(&:top_seats).inject(:+) %></p>
-  <p>Bottom seats count: <%= @train.carriages.coupe.map(&:bottom_seats).inject(:+) %></p>
+    <strong>Coupe Carriages Count:</strong>
+    <%= @train.carriages.coupe.count %>
   </p>
+
+  <p>
+    <strong>Economy Carriages Count:</strong>
+    <%= @train.carriages.economy.count %>
+  </p>
+
+  <% if @train.carriages.coupe.any? %>
+    <p>
+      <strong>Coupe Carriages:</strong>
+    <p>Top seats count: <%= @train.carriages.coupe.map(&:top_seats).inject(:+) %></p>
+    <p>Bottom seats count: <%= @train.carriages.coupe.map(&:bottom_seats).inject(:+) %></p>
+    </p>
+  <% end %>
+
+  <% if @train.carriages.economy.any? %>
+    <p>
+      <strong>Economy Seat:</strong>
+    <p>Top seats count: <%= @train.carriages.economy.map(&:top_seats).inject(:+) %></p>
+    <p>Bottom seats count: <%= @train.carriages.economy.map(&:bottom_seats).inject(:+) %></p>
+    <p>Top seats count: <%= @train.carriages.economy.map(&:side_top_seats).inject(:+) %></p>
+    <p>Bottom seats count: <%= @train.carriages.economy.map(&:side_bottom_seats).inject(:+) %></p>
+    </p>
+  <% end %>
 <% end %>
 
-<% if @train.carriages.economy.any? %>
-  <p>
-    <strong>Economy Seat:</strong>
-  <p>Top seats count: <%= @train.carriages.economy.map(&:top_seats).inject(:+) %></p>
-  <p>Bottom seats count: <%= @train.carriages.economy.map(&:bottom_seats).inject(:+) %></p>
-  <p>Top seats count: <%= @train.carriages.economy.map(&:side_top_seats).inject(:+) %></p>
-  <p>Bottom seats count: <%= @train.carriages.economy.map(&:side_bottom_seats).inject(:+) %></p>
-  </p>
-<% end %>
 
 <p>
   <strong>Current Station:</strong>

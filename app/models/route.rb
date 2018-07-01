@@ -4,11 +4,20 @@ class Route < ApplicationRecord
   has_many :railway_stations_routes
   has_many :railway_stations, through: :railway_stations_routes
   has_many :trains
+  has_many :tickets
 
   validates :name, presence: true
   validate  :stations_count
 
   before_validation :set_name
+
+  def self.search_routes(station1, station2)
+    Route.all.select { |r| r.railway_stations.include?(station1) && r.railway_stations.include?(station2) }
+  end
+
+  def railway_station_route(station)
+    railway_stations_routes.find_by(railway_station: station)
+  end
 
   private
 

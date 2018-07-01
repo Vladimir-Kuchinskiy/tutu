@@ -1,0 +1,19 @@
+<h1>Buy Ticket</h1>
+
+<%= form_with(model: @ticket, local: true) do |form| %>
+  <%= render 'common/errors', resource: @ticket %>
+
+  <%= form.hidden_field :begin_station_id, value: params[:begin_station_id] %>
+  <%= form.hidden_field :end_station_id, value: params[:end_station_id] %>
+  <%= form.hidden_field :train_id, value: params[:train_id] %>
+  <%= form.hidden_field :route_id, value: params[:route_id] %>
+
+  <div class="field">
+    <%= form.label :name, "User's name" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Buy Ticket' %>
+  </div>
+<% end %>

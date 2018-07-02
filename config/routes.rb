@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  get 'tickets/new'
-  get 'tickets/show'
-  get 'tickets/create'
-  get 'searches/show'
-  get 'searches/search'
+  devise_for :users
   resources :trains do
     resources :carriages, shallow: true
   end

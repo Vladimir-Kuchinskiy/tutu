@@ -1,33 +1,34 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Number:</strong>
   <%= @train.number %>
 </p>
 
 <p>
-  <strong>Compartment Carriages Count:</strong>
-  <%= @train.carriages.compartment.count %>
+  <strong>Coupe Carriages Count:</strong>
+  <%= @train.carriages.coupe.count %>
 </p>
 
 <p>
-  <strong>Reserved Seat Carriages Count:</strong>
-  <%= @train.carriages.reserved_seat.count %>
+  <strong>Economy Carriages Count:</strong>
+  <%= @train.carriages.economy.count %>
 </p>
 
-<% if @train.carriages.compartment.any? %>
+<% if @train.carriages.coupe.any? %>
   <p>
-    <strong>Compartment Carriages:</strong>
-    <p>Up seats count: <%= @train.carriages.compartment.map(&:up_seats).inject(:+) %></p>
-    <p>Down seats count: <%= @train.carriages.compartment.map(&:down_seats).inject(:+) %></p>
+    <strong>Coupe Carriages:</strong>
+  <p>Top seats count: <%= @train.carriages.coupe.map(&:top_seats).inject(:+) %></p>
+  <p>Bottom seats count: <%= @train.carriages.coupe.map(&:bottom_seats).inject(:+) %></p>
   </p>
 <% end %>
 
-<% if @train.carriages.reserved_seat.any? %>
+<% if @train.carriages.economy.any? %>
   <p>
-    <strong>Reserved Seat:</strong>
-    <p>Up seats count: <%= @train.carriages.reserved_seat.map(&:up_seats).inject(:+) %></p>
-    <p>Down seats count: <%= @train.carriages.reserved_seat.map(&:down_seats).inject(:+) %></p>
+    <strong>Economy Seat:</strong>
+  <p>Top seats count: <%= @train.carriages.economy.map(&:top_seats).inject(:+) %></p>
+  <p>Bottom seats count: <%= @train.carriages.economy.map(&:bottom_seats).inject(:+) %></p>
+  <p>Top seats count: <%= @train.carriages.economy.map(&:side_top_seats).inject(:+) %></p>
+  <p>Bottom seats count: <%= @train.carriages.economy.map(&:side_bottom_seats).inject(:+) %></p>
   </p>
 <% end %>
 
@@ -49,5 +50,21 @@
   <% end %>
 </p>
 
+<% if @train.carriages.any? %>
+  <table>
+    <thead>
+    <th>Carriage's numbers:</th>
+    </thead>
+    <tbody>
+    <% @train.carriages.ordered(@train).each do |carriage| %>
+      <tr>
+        <td><%= link_to carriage.number.to_s, carriage.becomes(Carriage) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
 <%= link_to 'Edit', edit_train_path(@train) %> |
 <%= link_to 'Back', trains_path %>
+

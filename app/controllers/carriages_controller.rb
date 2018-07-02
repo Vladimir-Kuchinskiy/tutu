@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CarriagesController < ApplicationController
   before_action :set_carriage, only: %i[show edit update destroy]
 
@@ -16,7 +18,7 @@ class CarriagesController < ApplicationController
   def create
     @carriage = Carriage.new(carriage_params)
     if @carriage.save
-      redirect_to @carriage, notice: 'Carriage was successfully created.'
+      redirect_to @carriage.becomes(Carriage), notice: 'Carriage was successfully created.'
     else
       render :new
     end
@@ -24,7 +26,7 @@ class CarriagesController < ApplicationController
 
   def update
     if @carriage.update(carriage_params)
-      redirect_to @carriage, notice: 'Carriage was successfully updated.'
+      redirect_to @carriage.becomes(Carriage), notice: 'Carriage was successfully updated.'
     else
       render :new
     end
@@ -38,7 +40,8 @@ class CarriagesController < ApplicationController
   private
 
   def carriage_params
-    params.require(:carriage).permit(:up_seats, :down_seats, :train_id, :kind)
+    params.require(:carriage).permit(:top_seats, :bottom_seats, :side_top_seats, :side_bottom_seats,
+                                     :train_id, :type)
   end
 
   def set_carriage

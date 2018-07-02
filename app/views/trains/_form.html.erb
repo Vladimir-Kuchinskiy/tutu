@@ -12,6 +12,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :sorting %>
+    <%= form.collection_select :sorting, Train::SORTING, :last, :first %>
+  </div>
+
+  <div class="field">
     <%= form.label :route_id, 'Route' %>
     <%= form.collection_select :route_id, Route.all, :id, :name %>
   </div>

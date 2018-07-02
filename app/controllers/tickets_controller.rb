@@ -1,4 +1,5 @@
 class TicketsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   def new
     @ticket = Ticket.new
   end
@@ -8,18 +9,17 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    @ticket = @user.tickets.new(ticket_params)
-    redirect_to @ticket if @ticket.save
+    @ticket = current_user.tickets.new(ticket_params)
+    if @ticket.save
+      redirect_to @ticket
+    else
+      render :new
+    end
   end
 
   private
 
   def ticket_params
-    params.require(:ticket).permit(:train_id, :begin_station_id, :end_station_id, :route_id)
-  end
-
-  def user_params
-    params.require(:ticket).permit(:name)
+    params.require(:ticket).permit(:train_id, :begin_station_id, :end_station_id, :route_id, :client_name)
   end
 end

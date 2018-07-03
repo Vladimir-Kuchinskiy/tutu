@@ -15,6 +15,16 @@
     <%= @train.carriages.economy.count %>
   </p>
 
+  <p>
+    <strong>SV Carriages Count:</strong>
+    <%= @train.carriages.sv.count %>
+  </p>
+
+  <p>
+    <strong>Seat Carriages Count:</strong>
+    <%= @train.carriages.seat.count %>
+  </p>
+
   <% if @train.carriages.coupe.any? %>
     <p>
       <strong>Coupe Carriages:</strong>
@@ -25,11 +35,25 @@
 
   <% if @train.carriages.economy.any? %>
     <p>
-      <strong>Economy Seat:</strong>
+      <strong>Economy Carriages:</strong>
     <p>Top seats count: <%= @train.carriages.economy.map(&:top_seats).inject(:+) %></p>
     <p>Bottom seats count: <%= @train.carriages.economy.map(&:bottom_seats).inject(:+) %></p>
     <p>Top seats count: <%= @train.carriages.economy.map(&:side_top_seats).inject(:+) %></p>
     <p>Bottom seats count: <%= @train.carriages.economy.map(&:side_bottom_seats).inject(:+) %></p>
+    </p>
+  <% end %>
+
+  <% if @train.carriages.sv.any? %>
+    <p>
+      <strong>SV Carriages:</strong>
+    <p>Bottom seats count: <%= @train.carriages.sv.map(&:bottom_seats).inject(:+) %></p>
+    </p>
+  <% end %>
+
+  <% if @train.carriages.seat.any? %>
+    <p>
+      <strong>Seat Carriages:</strong>
+    <p>Seat seats count: <%= @train.carriages.seat.map(&:seat_seats).inject(:+) %></p>
     </p>
   <% end %>
 <% end %>

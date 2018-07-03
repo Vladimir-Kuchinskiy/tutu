@@ -14,7 +14,11 @@
     <p class="alert"><%= alert %></p>
 
     <% if user_signed_in? %>
-      <p><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></p>
+      <p>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> |
+        <%= link_to 'Tickets', tickets_path %> |
+        <%= link_to 'Search for a ticket', search_path, method: :get %>
+      </p>
       <p>Account: <%= current_user.email %></p>
     <% else %>
       <p><%= link_to 'Sign In', new_user_session_path %></p>

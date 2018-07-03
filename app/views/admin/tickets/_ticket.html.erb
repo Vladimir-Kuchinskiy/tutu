@@ -1,0 +1,12 @@
+<tr>
+  <td><%= ticket.client_name %></td>
+  <td><%= ticket.user.email %></td>
+  <td><%= ticket.train.number %></td>
+  <td><%= ticket.route.name %></td>
+  <td><%= ticket.begin_station.title %></td>
+  <td><%= ticket.end_station.title %></td>
+
+  <td><%= link_to 'Show', [:admin, ticket] %></td>
+  <td><%= link_to 'Edit', edit_admin_ticket_path(ticket) %></td>
+  <td><%= link_to 'Destroy', [:admin, ticket], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>

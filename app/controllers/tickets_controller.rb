@@ -1,5 +1,10 @@
 class TicketsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: %i[index new create destroy]
+
+  def index
+    @tickets = current_user.tickets
+  end
+
   def new
     @ticket = Ticket.new
   end
@@ -15,6 +20,12 @@ class TicketsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def destroy
+    @ticket = Ticket.find(params[:id])
+    @ticket.destroy
+    redirect_to tickets_path, notice: 'Ticket was successfully deleted.'
   end
 
   private

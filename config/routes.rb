@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations', sessions: 'users/sessions' }
 
   resources :tickets, shallow: true
-  resource :search, only: [:new, :show, :edit] do
+
+  resource :search, only: %i[new show edit] do
     post '/' => 'searches#search'
   end
 

@@ -1,0 +1,14 @@
+<p><strong>Client's Name: </strong><%= @ticket.client_name %></p>
+
+<p><strong>User's email: </strong><%= @ticket.user.email %></p>
+
+<p><strong>Train: </strong><%= @ticket.train.number %></p>
+
+<p><strong>Route: </strong><%= @ticket.route.name %></p>
+
+<p><strong>Begin Station: </strong><%= @ticket.begin_station.title %></p>
+
+<p><strong>End Station: </strong><%= @ticket.end_station.title %></p>
+
+<%= link_to 'Edit', edit_admin_ticket_path(@ticket) %> |
+<%= link_to 'Back', admin_tickets_path %>

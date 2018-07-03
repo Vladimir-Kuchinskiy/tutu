@@ -40,7 +40,7 @@ class Admin::RoutesController < Admin::BaseController
   private
 
   def route_params
-    params.require(:route).permit(:name, railway_station_ids: [])
+    params.require(:route).permit(railway_station_ids: [])
   end
 
   def set_route

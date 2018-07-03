@@ -13,5 +13,3 @@
   <strong><%= @ticket.end_station.title %> Arrival Time: </strong>
   <%= @ticket.arrival_time.try(:strftime,"%d.%m.%y - %H:%M") %>
 </p>
-
-<%= link_to 'Back', search_path %>

@@ -1,0 +1,13 @@
+ru:
+  common:
+    back: "Назад"
+    errors: "помешали сохранить запись"
+    error: "ошибок"
+  admin:
+    railway_stations:
+      new:
+        title: "Новая станция"
+      form:
+        submit:
+          create: "Создать станцию"
+          update: "Обновить станцию"

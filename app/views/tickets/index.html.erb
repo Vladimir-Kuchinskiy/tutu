@@ -1,0 +1,9 @@
+<h2>Hello, here is your tickets:</h2>
+<ul>
+  <% @tickets.each do |ticket| %>
+    <li>
+      <%= link_to "#{ticket.begin_station.title} - #{ticket.end_station.title}", ticket %> |
+      <%= link_to 'Delete', ticket, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>

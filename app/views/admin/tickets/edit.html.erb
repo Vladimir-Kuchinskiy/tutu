@@ -1,0 +1,37 @@
+<h1>Editing Railway Station</h1>
+
+<%= form_with(model: [:admin, @ticket], local: true) do |form| %>
+  <%= render 'common/errors', resource: @ticket %>
+
+  <div class="field">
+    <%= form.label :client_name %>
+    <%= form.text_field :client_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :route_id, 'Route' %>
+    <%= form.collection_select :route_id, Route.all, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :begin_station_id, 'Begin Station' %>
+    <%= form.collection_select :begin_station_id, RailwayStation.all, :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_station_id %>
+    <%= form.collection_select :end_station_id, RailwayStation.all, :id, :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :side_bottom_seats %>
+    <%= form.number_field :side_bottom_seats %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "#{ @ticket.new_record?  ? 'Create' : 'Update' }" %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', [:admin, @ticket] %> |
+<%= link_to 'Back', admin_tickets_path %>

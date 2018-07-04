@@ -1,6 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p><strong>Your name: </strong><%= @ticket.user.name.titleize %></p>
+<p><strong>Client's name: </strong><%= @ticket.client_name.titleize %></p>
 
 <p><strong>Train: </strong><%= @ticket.train.number %></p>
 
@@ -15,5 +13,3 @@
   <strong><%= @ticket.end_station.title %> Arrival Time: </strong>
   <%= @ticket.arrival_time.try(:strftime,"%d.%m.%y - %H:%M") %>
 </p>
-
-<%= link_to 'Back', search_path %>

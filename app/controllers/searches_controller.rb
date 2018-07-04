@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SearchesController < ApplicationController
+  before_action :authenticate_user!, only: :search
   def show
     @stations = RailwayStation.all
   end

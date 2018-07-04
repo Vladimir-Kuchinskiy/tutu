@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class TicketsController < ApplicationController
+  before_action :authenticate_user!, only: %i[index new create destroy]
+
+  def index
+    @tickets = current_user.tickets
+  end
+
   def new
     @ticket = Ticket.new
   end
@@ -10,18 +16,23 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-    @ticket = @user.tickets.new(ticket_params)
-    redirect_to @ticket if @ticket.save
+    @ticket = current_user.tickets.new(ticket_params)
+    if @ticket.save
+      redirect_to @ticket
+    else
+      render :new
+    end
+  end
+
+  def destroy
+    @ticket = Ticket.find(params[:id])
+    @ticket.destroy
+    redirect_to tickets_path, notice: 'Ticket was successfully deleted.'
   end
 
   private
 
   def ticket_params
-    params.require(:ticket).permit(:train_id, :begin_station_id, :end_station_id, :route_id)
-  end
-
-  def user_params
-    params.require(:ticket).permit(:name)
+    params.require(:ticket).permit(:train_id, :begin_station_id, :end_station_id, :route_id, :client_name)
   end
 end

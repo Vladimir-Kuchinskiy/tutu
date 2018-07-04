@@ -11,7 +11,7 @@ class RailwayStation < ApplicationRecord
 
   def update_serial_number(route, serial_number)
     station_route = station_route(route)
-    station_route.update(serial_number: serial_number) if station_route
+    station_route&.update(serial_number: serial_number)
   end
 
   def serial_number(route)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TicketsController < ApplicationController
   before_action :authenticate_user!, only: %i[index new create destroy]
 

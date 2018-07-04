@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Admin::TicketsController < Admin::BaseController
-
   before_action :set_ticket, only: %i[show edit update destroy]
 
   def index
@@ -24,7 +23,6 @@ class Admin::TicketsController < Admin::BaseController
     @ticket.destroy
     redirect_to admin_tickets_url, notice: 'Ticket was successfully destroyed.'
   end
-
 
   private
 

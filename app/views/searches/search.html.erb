@@ -2,7 +2,7 @@
   <h2>Search query without results</h2>
 <% else %>
   <h2>Search result:</h2>
-  <table>
+  <table class="table">
     <thead>
       <th>Route</th>
       <th><%= @departure_station.title %> Departure Time</th>
@@ -19,7 +19,8 @@
               <td><strong>Train:</strong></td>
               <td><%= train.number %></td>
               <td><%= link_to 'Buy Ticket', new_ticket_path(begin_station_id: @departure_station.id,
-                              end_station_id: @arrival_station.id, train_id: train.id, route_id: route.id) %></td>
+                              end_station_id: @arrival_station.id, train_id: train.id, route_id: route.id),
+                              class: 'btn btn-primary'%></td>
             </tr>
           <% end %>
         </tr>
@@ -28,4 +29,4 @@
   </table>
 <% end %>
 
-<%= link_to 'Back', search_path, method: :get %>
+<%= link_to 'Back', search_path, method: :get, class: 'btn btn-warning' %>

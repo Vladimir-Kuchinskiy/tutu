@@ -3,8 +3,9 @@
 class Train < ApplicationRecord
   SORTING = { 'From Head to Tail' => true, 'From Tail to Head' => false }.freeze
 
-  belongs_to :current_station, class_name: 'RailwayStation', foreign_key: :current_station_id, optional: true
-  belongs_to :route, optional: true
+  belongs_to :current_station, class_name: 'RailwayStation', foreign_key: :current_station_id, optional: true,
+                                                                                               dependent: :destroy
+  belongs_to :route, optional: true, dependent: :destroy
 
   has_many   :tickets
   has_many   :carriages

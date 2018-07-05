@@ -1,18 +1,26 @@
-<p>
-  <strong>Title:</strong>
-  <%= @railway_station.title %>
-</p>
+<div class="col-md-3">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Title:</strong>
+      <span class="badge badge-primary badge-pill"><%= @railway_station.title %></span>
+    </li>
+  </ul>
 
-<% if @railway_station.routes.empty? %>
-  <p>Station has no routes</p>
-<% else %>
-  <p>Station has such routes:</p>
-  <ul>
-    <% @railway_station.routes.each do |route| %>
-      <li><%= route.name %></li>
+  <ul class="list-group">
+    <% if @railway_station.routes.empty? %>
+      <li class="list-group-item"><strong>Station has no routes</strong></li>
+    <% else %>
+      <li class="list-group-item"><strong>Station has such routes:</strong></li>
+      <% @railway_station.routes.each do |route| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= route.name %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
-<% end %>
+  <%= link_to 'Edit', edit_admin_railway_station_path(@railway_station), class: 'btn btn-success' %> |
+  <%= link_to 'Back', admin_railway_stations_path, class: 'btn btn-warning' %>
+</div>
 
-<%= link_to 'Edit', edit_admin_railway_station_path(@railway_station) %> |
-<%= link_to 'Back', admin_railway_stations_path %>
+
+

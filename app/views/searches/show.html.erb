@@ -1,16 +1,15 @@
 <h1>Search for a ticket</h1>
 
-<table>
-  <thead>
-    <th><strong>Depart Station</strong></th>
-    <th><strong>Arrival Station</strong></th>
-  </thead>
-  <tbody>
-    <%= form_with url: search_path, local: true do |form| %>
-      <td><%= form.collection_select :departure_station_id, @stations, :id, :title %></td>
-      <td><%= form.collection_select :arrival_station_id, @stations, :id, :title %></td>
-      <td><%= form.submit 'Search' %></td>
-    <% end %>
-    <td></td>
-  </tbody>
-</table>
+<div class="row">
+  <%= form_tag search_path do %>
+    <div class="col-md-4 form-group">
+      <%= select_tag :departure_station_id, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+    </div>
+    <div class="col-md-4 form-group">
+      <%= select_tag :arrival_station_id, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
+    </div>
+    <div class="col-md-4 form-group">
+      <%= submit_tag 'Search', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

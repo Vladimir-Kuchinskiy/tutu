@@ -3,10 +3,10 @@
 
   <div class="field">
     <%= form.label :railway_station_ids, 'Stations list' %>
-    <%= form.collection_select :railway_station_ids, RailwayStation.all, :id, :title, {}, { multiple: true } %>
+    <%= form.collection_select :railway_station_ids, RailwayStation.all, :id, :title, {}, { multiple: true, class: 'form-control' } %>
   </div>
 
   <div class="actions">
-    <%= form.submit "#{ route.new_record?  ? 'Create' : 'Update' }" %>
+    <%= form.submit "#{ route.new_record?  ? 'Create' : 'Update' }", class: 'btn btn-primary' %>
   </div>
 <% end %>

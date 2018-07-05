@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    get '/' => 'welcome#index'
+
     resources :trains do
       resources :carriages, shallow: true
     end
@@ -23,5 +25,5 @@ Rails.application.routes.draw do
     resources :tickets
   end
 
-  root 'welcome#index'
+  root 'searches#show'
 end

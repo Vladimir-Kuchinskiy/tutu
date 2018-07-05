@@ -1,34 +1,37 @@
 <h1>New Carriage</h1>
 
-<%= form_with(model: [:admin, @train, @carriage.becomes(Carriage)], local: true) do |form| %>
+<%= form_with(model: [:admin, @train, @carriage.becomes(Carriage)], local: true, class: 'col-md-4') do |form| %>
   <%= render 'common/errors', resource: @carriage %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :type %>
-    <%= form.select :type, Carriage::TYPES %>
+    <%= form.select :type, Carriage::TYPES, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :top_seats %>
-    <%= form.number_field :top_seats %>
+    <%= form.number_field :top_seats, min: 1, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :bottom_seats %>
-    <%= form.number_field :bottom_seats %>
+    <%= form.number_field :bottom_seats, min: 1, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :side_top_seats %>
-    <%= form.number_field :side_top_seats %>
+    <%= form.number_field :side_top_seats, min: 1, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :side_bottom_seats %>
-    <%= form.number_field :side_bottom_seats %>
+    <%= form.number_field :side_bottom_seats, min: 1, class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "#{ @carriage.new_record?  ? 'Create' : 'Update' }" %>
+  <div class="form-group">
+    <%= form.label :seat_seats %>
+    <%= form.number_field :seat_seats, min: 1, class: 'form-control' %>
   </div>
+
+  <%= form.submit "#{ @carriage.new_record?  ? 'Create' : 'Update' }", class: 'btn btn-primary' %>
 <% end %>

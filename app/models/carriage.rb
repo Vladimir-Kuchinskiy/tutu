@@ -3,7 +3,7 @@
 class Carriage < ApplicationRecord
   TYPES = %w[EconomyCarriage CoupeCarriage SvCarriage SeatCarriage].freeze
 
-  belongs_to :train
+  belongs_to :train, dependent: :destroy
 
   validates :number, :type, presence: true
   validates :number, uniqueness: { scope: :train_id }

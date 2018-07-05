@@ -1,43 +1,57 @@
-<p>
-  <strong>Name:</strong>
-  <%= @route.name %>
-</p>
-
-<% if @route.trains.empty? %>
-  <p>Route has no trains</p>
-<% else %>
-  <p>Route has such trains:</p>
-  <ul>
-    <% @route.trains.each do |train| %>
-      <li><%= train.number %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<% if @route.railway_stations.empty? %>
-  <p>Route has no stations</p>
-<% else %>
-  <p>Route has such stations:</p>
-  <table>
-    <thead>
-      <td><strong>Title</strong></td>
-      <td><strong>Serial Number</strong></td>
-    </thead>
-    <tbody>
-      <% @route.railway_stations.ordered.each do |station| %>
-        <tr>
-          <td><%= station.title %></td>
-          <td>
-            <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
-              <%= number_field_tag :serial_number, station.serial_number(@route)  %>
-              <%= hidden_field_tag :route_id, @route.id %>
-              <%= submit_tag 'Update' %>
+<div class="row">
+  <div class="col-md-2 col-lg-3">
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>Name:</strong>
+        <span class="badge badge-primary badge-pill"><%= @route.name %></span>
+      </li>
+    </ul>
+    <%= link_to 'Edit', edit_admin_route_path(@route), class: 'btn btn-success' %> |
+    <%= link_to 'Back', admin_routes_path, class: 'btn btn-warning' %>
+  </div>
+  <div class="col-md-2 col-lg-3">
+    <ul class="list-group">
+      <% if @route.trains.empty? %>
+        <li class="list-group-item"><strong>Route has no trains</strong></li>
+      <% else %>
+        <li class="list-group-item"><strong>Route has such trains:</strong></li>
+        <% @route.trains.each do |train| %>
+          <li class="list-group-item"><%= train.number %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-4 col-lg-5">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <% if @route.railway_stations.empty? %>
+          <strong>Route has no stations</strong>
+        <% else %>
+          <strong>Route has such stations:</strong>
+          <table class="table">
+            <thead>
+            <td><strong>Title</strong></td>
+            <td><strong>Serial Number</strong></td>
+            </thead>
+            <tbody>
+            <% @route.railway_stations.ordered.each do |station| %>
+              <tr>
+                <td><h5><%= station.title %></h5></td>
+                <td>
+                  <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
+                    <%= number_field_tag :serial_number, station.serial_number(@route), min: 1, class: 'form-control' %>
+                    <%= hidden_field_tag :route_id, @route.id %></br>
+                    <%= submit_tag 'Update', class: 'btn btn-primary' %>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-        </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% end %>
-<%= link_to 'Edit', edit_admin_route_path(@route) %> |
-<%= link_to 'Back', admin_routes_path %>
+            </tbody>
+          </table>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

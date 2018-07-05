@@ -9,6 +9,16 @@ ru:
       train:
         number: "Номер"
         current_station: "Текущая станция"
+      route:
+        name: "Название"
+      carriage:
+        top_seats: "Кол-во верхних сидений"
+        bottom_seats: "Кол-во нижних сидений"
+        side_top_seats: "Кол-во боковых верхних сидений"
+        side_bottom_seats: "Кол-во боковых нижних сидений"
+        seat_seats: "Кол-во сидячих сидений"
+      ticket:
+        client_name: "Имя пассажира"
     errors:
       messages:
         blank: "не может быть пустым"
@@ -17,3 +27,45 @@ ru:
           attributes:
             title:
               blank: "должно быть указано"
+        train:
+          attributes:
+            number:
+              blank: "должен быть указан"
+        route:
+          attributes:
+            name:
+              blank: "должно быть указано"
+        carriage:
+          attributes:
+            number:
+              blank: "должен быть указан"
+              not_a_number: "не являеться числом"
+            top_seats:
+              blank: "должно быть указано"
+              not_a_number: "не являеться числом"
+            bottom_seats:
+              blank: "должно быть указано"
+              not_a_number: "не являеться числом"
+            side_top_seats:
+              blank: "должно быть указано"
+              not_a_number: "не являеться числом"
+            side_bottom_seats:
+              blank: "должно быть указано"
+              not_a_number: "не являеться числом"
+            seat_seats:
+              blank: "должно быть указано"
+              not_a_number: "не являеться числом"
+        ticket:
+          attributes:
+            client_name:
+              blank: "должно быть указано"
+            train:
+              required: "должен быть указан"
+            route:
+              required: "должен быть указан"
+            begin_station:
+              required: "должна быть указана"
+            end_station:
+              required: "должна быть указана"
+
+

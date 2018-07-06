@@ -1,5 +1,11 @@
-<h1>New Railway Station</h1>
+<h1><%= t('.title') %></h1>
 
-<%= render 'form', railway_station: @railway_station %>
+<div class="row">
+  <div class="col-md-3">
+    <%= render 'form', railway_station: @railway_station %>
+  </div>
+</div>
 
-<%= link_to 'Back', admin_railway_stations_path %>
+</br>
+
+<%= link_to t('common.back'), admin_railway_stations_path, class: 'btn btn-warning' %>

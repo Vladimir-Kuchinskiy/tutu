@@ -18,9 +18,9 @@ class TicketsController < ApplicationController
   def create
     @ticket = current_user.tickets.new(ticket_params)
     if @ticket.save
-      redirect_to @ticket
+      redirect_to @ticket, notice: 'Ticket was successfully bought.'
     else
-      render :new
+      render :new, locals: { params: params }
     end
   end
 

@@ -1,100 +1,122 @@
-<p>
-  <strong>Number:</strong>
-  <%= @train.number %>
-</p>
-
-<% if @train.carriages.any? %>
-  <p>
-    <strong>Coupe Carriages Count:</strong>
-    <%= @train.carriages.coupe.count %>
-  </p>
-
-  <p>
-    <strong>Economy Carriages Count:</strong>
-    <%= @train.carriages.economy.count %>
-  </p>
-
-  <p>
-    <strong>SV Carriages Count:</strong>
-    <%= @train.carriages.sv.count %>
-  </p>
-
-  <p>
-    <strong>Seat Carriages Count:</strong>
-    <%= @train.carriages.seat.count %>
-  </p>
-
-  <% if @train.carriages.coupe.any? %>
-    <p>
-      <strong>Coupe Carriages:</strong>
-    <p>Top seats count: <%= @train.carriages.coupe.map(&:top_seats).inject(:+) %></p>
-    <p>Bottom seats count: <%= @train.carriages.coupe.map(&:bottom_seats).inject(:+) %></p>
-    </p>
-  <% end %>
-
-  <% if @train.carriages.economy.any? %>
-    <p>
-      <strong>Economy Carriages:</strong>
-    <p>Top seats count: <%= @train.carriages.economy.map(&:top_seats).inject(:+) %></p>
-    <p>Bottom seats count: <%= @train.carriages.economy.map(&:bottom_seats).inject(:+) %></p>
-    <p>Top seats count: <%= @train.carriages.economy.map(&:side_top_seats).inject(:+) %></p>
-    <p>Bottom seats count: <%= @train.carriages.economy.map(&:side_bottom_seats).inject(:+) %></p>
-    </p>
-  <% end %>
-
-  <% if @train.carriages.sv.any? %>
-    <p>
-      <strong>SV Carriages:</strong>
-    <p>Bottom seats count: <%= @train.carriages.sv.map(&:bottom_seats).inject(:+) %></p>
-    </p>
-  <% end %>
-
-  <% if @train.carriages.seat.any? %>
-    <p>
-      <strong>Seat Carriages:</strong>
-    <p>Seat seats count: <%= @train.carriages.seat.map(&:seat_seats).inject(:+) %></p>
-    </p>
-  <% end %>
-<% end %>
-
-
-<p>
-  <strong>Current Station:</strong>
-  <% if @train.current_station.present? %>
-    <%= @train.current_station.title %>
-  <% else %>
-    Not mentioned
-  <% end %>
-</p>
-
-<p>
-  <strong>Route:</strong>
-  <% if @train.route.present? %>
-    <%= @train.route.name %>
-  <% else %>
-    Not mentioned
-  <% end %>
-</p>
-
-<p>
-  <%= link_to 'Add Carriage', new_admin_train_carriage_path(@train) %>
-</p>
-
-<% if @train.carriages.any? %>
-  <table>
-    <thead>
-    <th>Carriage's numbers:</th>
-    </thead>
-    <tbody>
-    <% @train.carriages.ordered(@train).each do |carriage| %>
-      <tr>
-        <td><%= link_to "Carriage ##{carriage.number}", [:admin, carriage.becomes(Carriage)] %></td>
-      </tr>
+<div class="col-lg-3 col-md-2">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Number: </strong>
+      <span class="badge badge-primary badge-pill"><%= @train.number %></span>
+    </li>
+  </ul>
+  <% if @train.carriages.any? %>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>Coupe Carriages Count:</strong>
+        <span class="badge badge-primary badge-pill"><%= @train.carriages.coupe.count %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>Economy Carriages Count:</strong>
+        <span class="badge badge-primary badge-pill"><%= @train.carriages.economy.count %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>SV Carriages Count:</strong>
+        <span class="badge badge-primary badge-pill"><%= @train.carriages.sv.count %></span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>Seat Carriages Count:</strong>
+        <span class="badge badge-primary badge-pill"><%= @train.carriages.seat.count %></span>
+      </li>
+    </ul>
+    <% if @train.carriages.coupe.any? %>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Coupe Carriages:</strong></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Top seats count:
+          <span class="badge badge-primary badge-pill"><%= @train.carriages.coupe.map(&:top_seats).inject(:+) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Bottom seats count:
+          <span class="badge badge-primary badge-pill"><%= @train.carriages.coupe.map(&:bottom_seats).inject(:+) %></span>
+        </li>
+      </ul>
     <% end %>
-    </tbody>
-  </table>
-<% end %>
 
-<%= link_to 'Edit', edit_admin_train_path(@train) %> |
-<%= link_to 'Back', admin_trains_path %>
+    <% if @train.carriages.economy.any? %>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Economy Carriages:</strong></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Top seats count:
+          <span class="badge badge-primary badge-pill"><%= @train.carriages.economy.map(&:top_seats).inject(:+) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Bottom seats count:
+          <span class="badge badge-primary badge-pill"><%= @train.carriages.economy.map(&:bottom_seats).inject(:+) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Side top seats count:
+          <span class="badge badge-primary badge-pill"><%= @train.carriages.economy.map(&:side_top_seats).inject(:+) %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Side bottom seats count:
+          <span class="badge badge-primary badge-pill"><%= @train.carriages.economy.map(&:side_bottom_seats).inject(:+) %></span>
+        </li>
+      </ul>
+    <% end %>
 
+    <% if @train.carriages.sv.any? %>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>SV Carriages:</strong></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Bottom seats count:
+          <span class="badge badge-primary badge-pill"><%= @train.carriages.sv.map(&:bottom_seats).inject(:+) %></span>
+        </li>
+      </ul>
+    <% end %>
+
+    <% if @train.carriages.seat.any? %>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Seat Carriages:</strong></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Seat seats count:
+          <span class="badge badge-primary badge-pill"><%= @train.carriages.seat.map(&:seat_seats).inject(:+) %></span>
+        </li>
+      </ul>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="col-lg-3 col-md-2">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Current Station:</strong>
+      <span class="badge badge-primary badge-pill">
+        <% if @train.current_station.present? %>
+          <%= @train.current_station.title %>
+        <% else %>
+          Not mentioned
+        <% end %>
+      </span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Route:</strong>
+      <span class="badge badge-primary badge-pill">
+        <% if @train.route.present? %>
+          <%= @train.route.name %>
+        <% else %>
+          Not mentioned
+        <% end %>
+      </span>
+    </li>
+  </ul>
+  <% if @train.carriages.any? %>
+    <ul class="list-group">
+      <li class="list-group-item"><strong>Carriage's numbers:</strong></li>
+      <% @train.carriages.ordered(@train).each do |carriage| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <%= link_to "Carriage ##{carriage.number}", [:admin, carriage.becomes(Carriage)] %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
+
+<%= link_to 'Add Carriage', new_admin_train_carriage_path(@train), class: 'btn btn-primary btn-sm' %> |
+<%= link_to 'Edit', edit_admin_train_path(@train), class: 'btn btn-success btn-sm' %> |
+<%= link_to 'Back', admin_trains_path, class: 'btn btn-warning btn-sm' %>

@@ -5,8 +5,9 @@
   <td><%= ticket.route.name %></td>
   <td><%= ticket.begin_station.title %></td>
   <td><%= ticket.end_station.title %></td>
-
-  <td><%= link_to 'Show', [:admin, ticket] %></td>
-  <td><%= link_to 'Edit', edit_admin_ticket_path(ticket) %></td>
-  <td><%= link_to 'Destroy', [:admin, ticket], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td>
+    <%= link_to 'Show', [:admin, ticket], class: 'btn btn-warning btn-sm' %> |
+    <%= link_to 'Edit', edit_admin_ticket_path(ticket), class: 'btn btn-success btn-sm' %> |
+    <%= link_to 'Destroy', [:admin, ticket], method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+  </td>
 </tr>

@@ -1,9 +1,11 @@
 <h2>Hello, here is your tickets:</h2>
-<ul>
+<ul class="list-group col-md-4">
   <% @tickets.each do |ticket| %>
-    <li>
-      <%= link_to "#{ticket.begin_station.title} - #{ticket.end_station.title}", ticket %> |
-      <%= link_to 'Delete', ticket, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <li class="list-group-item list-group-item-action">
+      <h4>
+        <%= link_to "#{ticket.begin_station.title} - #{ticket.end_station.title}", ticket, class: 'btn btn-default' %>
+        <%= link_to 'Delete', ticket, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right' %>
+      </h4>
     </li>
   <% end %>
 </ul>

@@ -1,27 +1,25 @@
 <%= form_with(model: [:admin, train], local: true) do |form| %>
   <%= render 'common/errors', resource: train %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :number %>
-    <%= form.text_field :number %>
+    <%= form.text_field :number, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :current_station_id, 'Current Station' %>
-    <%= form.collection_select :current_station_id, RailwayStation.all, :id, :title %>
+  <div class="form-group">
+    <%= form.label :current_station %>
+    <%= form.select :current_station_id, options_from_collection_for_select(RailwayStation.all, :id, :title), class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :sorting %>
-    <%= form.collection_select :sorting, Train::SORTING, :last, :first %>
+    <%= form.select :sorting, options_from_collection_for_select(Train::SORTING, :last, :first), class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :route_id, 'Route' %>
-    <%= form.collection_select :route_id, Route.all, :id, :name %>
+  <div class="form-group">
+    <%= form.label :route %>
+    <%= form.select :route_id, options_from_collection_for_select(Route.all, :id, :name), class: 'form-control' %>
   </div>
 
-  <div class="actions">
-    <%= form.submit "#{ train.new_record?  ? 'Create' : 'Update' }" %>
-  </div>
+  <%= form.submit "#{ train.new_record?  ? t('.submit.create') : t('.submit.update') }", class: 'btn btn-primary' %>
 <% end %>

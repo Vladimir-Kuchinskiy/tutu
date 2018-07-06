@@ -1,14 +1,43 @@
-<p><strong>Client's Name: </strong><%= @ticket.client_name %></p>
+<div class="col-md-3 col-lg-4">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Client's Name: </strong>
+      <span class="badge badge-primary badge-pill"><%= @ticket.client_name %></span>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>User's email:</strong>
+      <span class="badge badge-primary badge-pill"><%= @ticket.user.email %></span>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Train:</strong>
+      <span class="badge badge-primary badge-pill"><%= @ticket.train.number %></span>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Route:</strong>
+      <span class="badge badge-primary badge-pill"><%= @ticket.route.name %></span>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Begin Station:</strong>
+      <span class="badge badge-primary badge-pill"><%= @ticket.begin_station.title %></span>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>End Station:</strong>
+      <span class="badge badge-primary badge-pill"><%= @ticket.end_station.title %></span>
+    </li>
+  </ul>
+  <%= link_to 'Edit', edit_admin_ticket_path(@ticket), class: 'btn btn-success' %> |
+  <%= link_to 'Back', admin_tickets_path, class: 'btn btn-warning' %>
+</div>
 
-<p><strong>User's email: </strong><%= @ticket.user.email %></p>
 
-<p><strong>Train: </strong><%= @ticket.train.number %></p>
 
-<p><strong>Route: </strong><%= @ticket.route.name %></p>
-
-<p><strong>Begin Station: </strong><%= @ticket.begin_station.title %></p>
-
-<p><strong>End Station: </strong><%= @ticket.end_station.title %></p>
-
-<%= link_to 'Edit', edit_admin_ticket_path(@ticket) %> |
-<%= link_to 'Back', admin_tickets_path %>

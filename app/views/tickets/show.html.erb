@@ -13,6 +13,5 @@
       <%= @ticket.arrival_time.try(:strftime,"%d.%m.%y - %H:%M") %>
     </h4>
   </li>
-  <br>
 </ul>
-<%= link_to 'Back', tickets_path, class: 'btn btn-warning' %>
+<p><%= link_to 'Back', tickets_path, class: 'btn btn-warning' %></p>

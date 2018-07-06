@@ -9,8 +9,11 @@ ru:
       train:
         number: "Номер"
         current_station: "Текущая станция"
+        route: "Путь"
+        sorting: "Сортировка"
       route:
         name: "Название"
+        railway_stations: "Список станций"
       carriage:
         top_seats: "Кол-во верхних сидений"
         bottom_seats: "Кол-во нижних сидений"

@@ -7,7 +7,28 @@ ru:
     railway_stations:
       new:
         title: "Новая станция"
+      edit:
+        title: "Изменить станцию"
       form:
         submit:
           create: "Создать станцию"
           update: "Обновить станцию"
+    trains:
+      new:
+        title: "Новый поезд"
+      edit:
+        title: "Изменить поезд"
+      form:
+        submit:
+          create: "Создать поезд"
+          update: "Обновить поезд"
+    routes:
+      new:
+        title: "Новый путь"
+      edit:
+        title: "Изменить путь"
+      form:
+        submit:
+          create: "Создать путь"
+          update: "Обновить путь"
+

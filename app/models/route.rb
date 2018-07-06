@@ -22,10 +22,10 @@ class Route < ApplicationRecord
   private
 
   def set_name
-    self.name = "#{railway_stations.first.title} - #{railway_stations.last.title}"
+    self.name = "#{railway_stations.first.title} - #{railway_stations.last.title}" if railway_stations.size > 1
   end
 
   def stations_count
-    errors.add(:base, 'Route should contain at least 2 stations') if railway_stations.size < 2
+    errors.add(:base, 'Путь должен содержать как минимум 2 станции') if railway_stations.size < 2
   end
 end

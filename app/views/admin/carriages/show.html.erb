@@ -1,16 +1,51 @@
-<p><strong>Train: </strong><%= @carriage.train.number %></p>
+<div class="col-md-3 col-lg-3">
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Train:</strong>
+      <span class="badge badge-primary badge-pill"><%= @carriage.train.number %></span>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Type:</strong>
+      <span class="badge badge-primary badge-pill"><%= @carriage.type.titleize %></span>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Top Seats:</strong>
+      <span class="badge badge-primary badge-pill"><%= @carriage.top_seats %></span>
+    </li>
+  </ul>
+  <ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <strong>Bottom Seats:</strong>
+      <span class="badge badge-primary badge-pill"><%= @carriage.bottom_seats %></span>
+    </li>
+  </ul>
+  <%= link_to 'Back', [:admin, @carriage.train], class: 'btn btn-warning' %>
+</div>
+<div class="col-md-3 col-lg-3">
+  <% if @carriage.type == 'EconomyCarriage' %>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>Side Top Seats:</strong>
+        <span class="badge badge-primary badge-pill"><%= @carriage.side_top_seats %></span>
+      </li>
+    </ul>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>Side Bottom Seats:</strong>
+        <span class="badge badge-primary badge-pill"><%= @carriage.side_bottom_seats %></span>
+      </li>
+    </ul>
+  <% elsif @carriage.type == 'SeatCarriage' %>
+    <ul class="list-group">
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <strong>Seat Seats:</strong>
+        <span class="badge badge-primary badge-pill"><%= @carriage.seat_seats %></span>
+      </li>
+    </ul>
+  <% end %>
+</div>
 
-<p><strong>Type: </strong><%= @carriage.type.titleize %></p>
-
-<p><strong>Number: </strong><%= @carriage.number %></p>
-
-<p><strong>Top Seats: </strong><%= @carriage.top_seats %></p>
-
-<p><strong>Bottom Seats: </strong><%= @carriage.bottom_seats %></p>
-
-<% if @carriage.type == 'EconomyCarriage' %>
-  <p><strong>Side Top Seats: </strong><%= @carriage.side_top_seats %></p>
-  <p><strong>Side Bottom Seats: </strong><%= @carriage.side_bottom_seats %></p>
-<% end %>
-
-<%= link_to 'Back', [:admin, @carriage.train] %>

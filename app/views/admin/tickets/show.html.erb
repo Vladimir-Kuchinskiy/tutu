@@ -35,9 +35,6 @@
       <span class="badge badge-primary badge-pill"><%= @ticket.end_station.title %></span>
     </li>
   </ul>
-</div>
-
-<div class="col-md-3 col-lg-4">
   <%= link_to 'Edit', edit_admin_ticket_path(@ticket), class: 'btn btn-success' %> |
   <%= link_to 'Back', admin_tickets_path, class: 'btn btn-warning' %>
 </div>

@@ -70,5 +70,9 @@ ru:
               required: "должна быть указана"
             end_station:
               required: "должна быть указана"
+        user:
+          attributes:
+            email:
+              taken: "ошибка почты"
 
 

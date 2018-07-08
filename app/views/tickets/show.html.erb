@@ -5,7 +5,6 @@
         <h4><strong>Client's name: </strong><%= @ticket.client_name.titleize %></h4>
         <h4><strong>Train: </strong><%= @ticket.train.number %></h4>
         <h4><strong>Route: </strong><%= @ticket.route.name %></h4>
-        <h4><strong>Client's name: </strong><%= @ticket.client_name.titleize %></h4>
         <h4>
           <strong><%= @ticket.begin_station.title %> Departure Time: </strong>
           <%= @ticket.departure_time.try(:strftime,"%d.%m.%y - %H:%M") %>

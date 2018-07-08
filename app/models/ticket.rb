@@ -7,7 +7,8 @@ class Ticket < ApplicationRecord
   belongs_to :begin_station, class_name: 'RailwayStation', foreign_key: :begin_station_id
   belongs_to :end_station,   class_name: 'RailwayStation', foreign_key: :end_station_id
 
-  after_create :send_notification
+  after_create :send_create_notification
+  after_destroy :send_delete_notification
 
   validates :client_name, presence: true
 
@@ -25,7 +26,11 @@ class Ticket < ApplicationRecord
 
   private
 
-  def send_notification
+  def send_create_notification
     TicketsMailer.buy_ticket(user, self).deliver_now
+  end
+
+  def send_delete_notification
+    TicketsMailer.remove_ticket(user, self).deliver_now
   end
 end

@@ -23,11 +23,6 @@
       <%= form.collection_select :end_station_id, RailwayStation.all, :id, :title, class: 'form-control' %>
     </div>
 
-    <div class="field">
-      <%= form.label :side_bottom_seats %>
-      <%= form.number_field :side_bottom_seats, min: 1, class: 'form-control' %>
-    </div>
-
     <%= form.submit "#{ @ticket.new_record?  ? 'Create' : 'Update' }", class: 'btn btn-primary' %>
   <% end %>
   </br>

@@ -19,7 +19,7 @@
     <%= link_to 'Edit', edit_admin_route_path(@route), class: 'btn btn-success' %> |
     <%= link_to 'Back', admin_routes_path, class: 'btn btn-warning' %>
   </div>
-  <div class="col-md-2 col-lg-3">
+  <div class="col-md-3 col-lg-4">
     <ul class="list-group">
       <li class="list-group-item">
         <% if @route.railway_stations.empty? %>
@@ -35,13 +35,11 @@
             <% @route.railway_stations.ordered.each do |station| %>
               <tr>
                 <td><h5><%= station.title %></h5></td>
-                <td>
-                  <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
-                    <%= number_field_tag :serial_number, station.serial_number(@route), min: 1, class: 'form-control' %>
-                    <%= hidden_field_tag :route_id, @route.id %></br>
-                    <%= submit_tag 'Update', class: 'btn btn-primary' %>
-                  <% end %>
-                </td>
+                <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
+                <td><%= number_field_tag :serial_number, station.serial_number(@route), min: 1, class: 'form-control' %></td>
+                  <%= hidden_field_tag :route_id, @route.id %></br>
+                <td><%= submit_tag 'Update', class: 'btn btn-primary' %></td>
+                <% end %>
               </tr>
             <% end %>
             </tbody>

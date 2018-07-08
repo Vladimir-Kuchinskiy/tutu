@@ -1,4 +1,4 @@
-<h4>Привет, <%= @user.first_name %></h4>
-<h5>Вы купили билет по маршруту "<%= @ticket.route_name %>"</h5>
-<h5>Посмотреть билет вы можете посмотреть <%= link_to 'здесь', @ticket, target: '_blank' %>"</h5>
-<h5>Список ваших билетов вы можете посмотреть <%= link_to 'здесь', tickets_url, target: '_blank' %>"</h5>
+<h3>Привет, <%= @user.first_name %></h3>
+<h4>Вы купили билет по марш1руту "<%= @ticket.route_name %>"</h4>
+<h4>Посмотреть билет вы можете <%= link_to 'здесь', @ticket, target: '_blank' %>"</h4>
+<h4>Посмотреть список ваших билетов вы можете <%= link_to 'здесь', tickets_url, target: '_blank' %>"</h4>

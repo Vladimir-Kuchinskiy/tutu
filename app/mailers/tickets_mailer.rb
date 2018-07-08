@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TicketsMailer < ApplicationMailer
   def buy_ticket(user, ticket)
     @user = user

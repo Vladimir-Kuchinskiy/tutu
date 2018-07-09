@@ -9,7 +9,7 @@ class Route < ApplicationRecord
   validates :name, presence: true
   validate  :stations_count
 
-  before_validation :set_name
+  before_validation :set_name, on: :create
 
   def self.search_routes(station1, station2)
     Route.all.select { |r| r.railway_stations.include?(station1) && r.railway_stations.include?(station2) }

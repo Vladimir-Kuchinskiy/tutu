@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get '/' => 'welcome#index'
 
     resources :trains do
+      patch :update_number, on: :member
       resources :carriages, shallow: true
     end
 
@@ -20,7 +21,9 @@ Rails.application.routes.draw do
       patch :update_position, on: :member
     end
 
-    resources :routes
+    resources :routes do
+      patch :update_name, on: :member
+    end
 
     resources :tickets
   end

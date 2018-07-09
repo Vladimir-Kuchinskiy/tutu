@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= form_with(model: [:admin, route], url: update_name_admin_route_path(route),
+                  html: { style: "display: #{hidden ? 'none' : 'block'}", id: "edit_route_#{route.id}" },
+                  local: true) do |form| %>
+      <%= render 'common/errors', resource: route %>
+
+      <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
+
+      <%= form.submit 'Обновить название', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

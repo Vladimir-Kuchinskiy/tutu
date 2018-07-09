@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= form_with(model: [:admin, train], url: update_number_admin_train_path(train),
+                  html: { style: "display: #{hidden ? 'none' : 'block'}", id: "edit_train_#{train.id}" },
+                  local: true) do |form| %>
+      <%= render 'common/errors', resource: train %>
+
+      <div class="form-group">
+        <%= form.label :number %>
+        <%= form.text_field :number, class: 'form-control' %>
+      </div>
+
+      <%= form.submit 'Обновить название', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

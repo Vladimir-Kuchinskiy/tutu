@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
     $('a.edit_route').click(function(e){
         e.preventDefault();
         var route_id;

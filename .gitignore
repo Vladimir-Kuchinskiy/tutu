@@ -31,3 +31,4 @@
 
 /.idea/
 .idea/workspace.xml
+sendgrid.env

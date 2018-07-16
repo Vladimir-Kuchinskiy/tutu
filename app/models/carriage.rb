@@ -3,10 +3,9 @@
 class Carriage < ApplicationRecord
   TYPES = %w[EconomyCarriage CoupeCarriage SvCarriage SeatCarriage].freeze
 
-  belongs_to :train, dependent: :destroy
+  belongs_to :train
 
   validates :number, :type, presence: true
-  # TODO unique index in db
   validates :number, uniqueness: { scope: :train_id }
 
   before_validation :add_number, on: :create
@@ -19,9 +18,7 @@ class Carriage < ApplicationRecord
 
   private
 
-  # TODO only on create
   def add_number
-    byebug
-    self.number = (train.carriages.where.not(number: nil).last.number || 0) + 1
+    self.number = (train.carriages.where.not(number: nil).last.try(:number) || 0) + 1
   end
 end

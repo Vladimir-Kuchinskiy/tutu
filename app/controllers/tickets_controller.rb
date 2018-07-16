@@ -8,7 +8,7 @@ class TicketsController < ApplicationController
   end
 
   def new
-    @ticket = Ticket.new
+    @ticket = Ticket.new(ticket_params)
   end
 
   def show
@@ -16,6 +16,7 @@ class TicketsController < ApplicationController
   end
 
   def create
+    byebug
     @ticket = current_user.tickets.new(ticket_params)
     if @ticket.save
       redirect_to @ticket, notice: 'Ticket was successfully bought.'

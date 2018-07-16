@@ -3,7 +3,7 @@
 class Route < ApplicationRecord
   has_many :railway_stations_routes
   has_many :railway_stations, through: :railway_stations_routes
-  has_many :trains
+  has_many :trains, dependent: :destroy
   has_many :tickets
 
   validates :name, presence: true
@@ -19,6 +19,14 @@ class Route < ApplicationRecord
     railway_stations_routes.find_by(railway_station: station)
   end
 
+  def departure_time(station)
+    railway_station_route(station).departure_time
+  end
+
+  def arrival_time(station)
+    railway_station_route(station).arrival_time
+  end
+
   private
 
   def set_name
@@ -26,6 +34,6 @@ class Route < ApplicationRecord
   end
 
   def stations_count
-    errors.add(:base, 'Путь должен содержать как минимум 2 станции') if railway_stations.size < 2
+    errors.add(:base, t('activerecord.errors.messages.stations_count')) if railway_stations.size < 2
   end
 end

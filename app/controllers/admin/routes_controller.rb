@@ -24,17 +24,11 @@ class Admin::RoutesController < Admin::BaseController
     end
   end
 
+  # TODO extract method for redirect
   def update
     if @route.update(route_params)
-      redirect_to [:admin, @route], notice: 'Route was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  def update_name
-    if @route.update(route_params)
-      redirect_to admin_routes_url, notice: 'Route was successfully updated.'
+      params[:route][:name_only] ? (redirect_to admin_routes_url, notice: 'Route was successfully updated.') :
+          (redirect_to [:admin, @route], notice: 'Route was successfully updated.')
     else
       render :edit
     end

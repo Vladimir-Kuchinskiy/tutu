@@ -38,23 +38,19 @@ class Admin::TrainsController < Admin::BaseController
 
   # PATCH/PUT /trains/1
   # PATCH/PUT /trains/1.json
+  # TODO remove comments refactor redirect
   def update
     respond_to do |format|
       if @train.update(train_params)
-        format.html { redirect_to [:admin, @train], notice: 'Train was successfully updated.' }
+        format.html do
+          params[:train][:number_only] ? (redirect_to admin_trains_url, notice: 'Train was successfully updated.') :
+              (redirect_to [:admin, @train], notice: 'Train was successfully updated.')
+        end
         format.json { render :show, status: :ok, location: @train }
       else
         format.html { render :edit }
         format.json { render json: @train.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def update_number
-    if @train.update(train_params)
-      redirect_to admin_trains_url, notice: 'Train was successfully updated.'
-    else
-      render :edit
     end
   end
 

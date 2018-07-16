@@ -25,6 +25,7 @@ ru:
     errors:
       messages:
         blank: "не может быть пустым"
+        stations_count: 'Путь должен содержать как минимум 2 станции'
       models:
         railway_station:
           attributes:

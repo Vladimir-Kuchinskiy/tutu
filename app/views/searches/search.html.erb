@@ -12,14 +12,14 @@
       <% @routes.each do |route| %>
         <tr>
           <td><%= route.name %></td>
-          <td><%= route.railway_station_route(@departure_station).departure_time.try(:strftime,"%d.%m.%y - %H:%M") %></td>
-          <td><%= route.railway_station_route(@arrival_station).arrival_time.try(:strftime,"%d.%m.%y - %H:%M") %>
+          <td><%= convert_datetime(route.departure_time(@departure_station)) %></td>
+          <td><%= convert_datetime(route.arrival_time(@arrival_station)) %></td>
           <% route.trains.each do |train| %>
             <tr>
               <td><strong>Train:</strong></td>
               <td><%= train.number %></td>
-              <td><%= link_to 'Buy Ticket', new_ticket_path(begin_station_id: @departure_station.id,
-                              end_station_id: @arrival_station.id, train_id: train.id, route_id: route.id),
+              <td><%= link_to 'Buy Ticket', new_ticket_path(ticket: { begin_station_id: @departure_station.id,
+                              end_station_id: @arrival_station.id, train_id: train.id, route_id: route.id }),
                               class: 'btn btn-primary'%></td>
             </tr>
           <% end %>

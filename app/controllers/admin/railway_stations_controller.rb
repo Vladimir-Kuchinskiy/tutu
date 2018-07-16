@@ -42,17 +42,18 @@ class Admin::RailwayStationsController < Admin::BaseController
     end
   end
 
+  def update_position
+    @route = Route.find(params[:route_id])
+    @railway_station = RailwayStation.find(params[:id])
+    @railway_station.update_serial_number(@route, params[:serial_number])
+    redirect_to [:admin, @route]
+  end
+
   # DELETE /railway_stations/1
   # DELETE /railway_stations/1.json
   def destroy
     @railway_station.destroy
     redirect_to admin_railway_stations_url, notice: 'Railway station was successfully destroyed.'
-  end
-
-  def update_position
-    @route = Route.find(params[:route_id])
-    @railway_station.update_serial_number(@route, params[:serial_number])
-    redirect_to [:admin, @route]
   end
 
   private

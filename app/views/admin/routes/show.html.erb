@@ -35,7 +35,7 @@
             <% @route.railway_stations.ordered.each do |station| %>
               <tr>
                 <td><h5><%= station.title %></h5></td>
-                <%= form_tag update_position_admin_railway_station_path(station), method: :patch do %>
+                <%= form_tag update_position_admin_route_railway_station_path(route_id: @route.id, id: station.id), method: :patch do %>
                 <td><%= number_field_tag :serial_number, station.serial_number(@route), min: 1, class: 'form-control' %></td>
                   <%= hidden_field_tag :route_id, @route.id %></br>
                 <td><%= submit_tag 'Update', class: 'btn btn-primary' %></td>

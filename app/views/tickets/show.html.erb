@@ -7,11 +7,11 @@
         <h4><strong>Route: </strong><%= @ticket.route.name %></h4>
         <h4>
           <strong><%= @ticket.begin_station.title %> Departure Time: </strong>
-          <%= @ticket.departure_time.try(:strftime,"%d.%m.%y - %H:%M") %>
+          <%= convert_datetime(@ticket.departure_time) %>
         </h4>
         <h4>
           <strong><%= @ticket.end_station.title %> Arrival Time: </strong>
-          <%= @ticket.arrival_time.try(:strftime,"%d.%m.%y - %H:%M") %>
+          <%= convert_datetime(@ticket.arrival_time) %>
         </h4>
       </li>
     </ul>

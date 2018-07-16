@@ -4,10 +4,10 @@
     <%= form_with(model: @ticket, local: true) do |form| %>
       <%= render 'common/errors', resource: @ticket %>
 
-      <%= form.hidden_field :begin_station_id, value: params[:begin_station_id] || params[:ticket][:begin_station_id] %>
-      <%= form.hidden_field :end_station_id, value: params[:end_station_id] || params[:ticket][:end_station_id] %>
-      <%= form.hidden_field :train_id, value: params[:train_id] || params[:ticket][:train_id] %>
-      <%= form.hidden_field :route_id, value: params[:route_id] || params[:ticket][:route_id] %>
+      <%= form.hidden_field :begin_station_id, value: @ticket.begin_station_id %>
+      <%= form.hidden_field :end_station_id, value: @ticket.end_station_id %>
+      <%= form.hidden_field :train_id, value: @ticket.train_id %>
+      <%= form.hidden_field :route_id, value: @ticket.route_id %>
 
       <div class="form-group">
         <%= form.label :client_name, "Client's name" %>
@@ -18,4 +18,3 @@
     <% end %>
   </div>
 </row>
-

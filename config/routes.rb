@@ -17,12 +17,14 @@ Rails.application.routes.draw do
       resources :carriages, shallow: true
     end
 
-    resources :railway_stations do
-      patch :update_position, on: :member
-    end
+    resources :railway_stations
 
+    # TODO
     resources :routes do
       patch :update_name, on: :member
+      resources :railway_stations, only: [] do
+        patch :update_position, on: :member
+      end
     end
 
     resources :tickets

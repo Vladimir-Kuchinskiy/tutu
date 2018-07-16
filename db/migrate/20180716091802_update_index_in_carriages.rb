@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 class UpdateIndexInCarriages < ActiveRecord::Migration[5.2]
   def change
-    remove_index :carriages, :train_id
-    add_index    :carriages, :train_id, unique: true
+    add_index :carriages, %i[train_id number], unique: true
   end
 end

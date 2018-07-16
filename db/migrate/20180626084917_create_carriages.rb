@@ -8,7 +8,7 @@ class CreateCarriages < ActiveRecord::Migration[5.2]
       t.integer    :bottom_seats
       t.integer    :side_top_seats
       t.integer    :side_bottom_seats
-      t.belongs_to :train
+      t.belongs_to :train, unique: true
       t.string     :type
       t.timestamps
     end

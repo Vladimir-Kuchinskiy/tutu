@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::RoutesController < Admin::BaseController
-  before_action :set_route, only: %i[show edit update destroy]
+  before_action :set_route, only: %i[show edit update update_name destroy]
 
   def index
     @routes = Route.all
@@ -28,7 +28,15 @@ class Admin::RoutesController < Admin::BaseController
     if @route.update(route_params)
       redirect_to [:admin, @route], notice: 'Route was successfully updated.'
     else
-      render :new
+      render :edit
+    end
+  end
+
+  def update_name
+    if @route.update(route_params)
+      redirect_to admin_routes_url, notice: 'Route was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -40,7 +48,7 @@ class Admin::RoutesController < Admin::BaseController
   private
 
   def route_params
-    params.require(:route).permit(railway_station_ids: [])
+    params.require(:route).permit(:name, railway_station_ids: [])
   end
 
   def set_route

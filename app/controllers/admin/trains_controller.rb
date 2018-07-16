@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::TrainsController < Admin::BaseController
-  before_action :set_train, only: %i[show edit update destroy]
+  before_action :set_train, only: %i[show edit update update_number destroy]
 
   # GET /trains
   # GET /trains.json
@@ -47,6 +47,14 @@ class Admin::TrainsController < Admin::BaseController
         format.html { render :edit }
         format.json { render json: @train.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update_number
+    if @train.update(train_params)
+      redirect_to admin_trains_url, notice: 'Train was successfully updated.'
+    else
+      render :edit
     end
   end
 

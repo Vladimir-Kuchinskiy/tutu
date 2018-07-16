@@ -1,7 +1,7 @@
 <h1>Search for a ticket</h1>
 
 <div class="row">
-  <%= form_tag search_path do %>
+  <%= form_tag search_path, class: 'search-form' do %>
     <div class="col-md-4 form-group">
       <%= select_tag :departure_station_id, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
     </div>
@@ -9,7 +9,7 @@
       <%= select_tag :arrival_station_id, options_from_collection_for_select(@stations, :id, :title), class: 'form-control' %>
     </div>
     <div class="col-md-4 form-group">
-      <%= submit_tag 'Search', class: 'btn btn-primary' %>
+      <%= submit_tag 'Search', class: 'btn btn-primary find' %>
     </div>
   <% end %>
 </div>

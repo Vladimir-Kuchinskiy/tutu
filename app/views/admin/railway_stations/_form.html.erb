@@ -1,10 +1,14 @@
-<%= form_with(model: [:admin, railway_station], local: true) do |form| %>
-  <%= render 'common/errors', resource: railway_station %>
+<div class="row">
+  <div class="col-md-3">
+    <%= form_with(model: [:admin, railway_station], html: { style: "display: #{hidden ? 'none' : 'block'}", id: "edit_railway_station_#{railway_station.id}" }, local: true) do |form| %>
+      <%= render 'common/errors', resource: railway_station %>
 
-  <div class="form-group mx-sm-3 mb-2">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control' %>
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, class: 'form-control' %>
+      </div>
+
+      <%= form.submit "#{ railway_station.new_record?  ? t('.submit.create') : t('.submit.update') }", class: 'btn btn-primary mb-2' %>
+    <% end %>
   </div>
-
-  <%= form.submit "#{ railway_station.new_record?  ? t('.submit.create') : t('.submit.update') }", class: 'btn btn-primary mb-2' %>
-<% end %>
+</div>

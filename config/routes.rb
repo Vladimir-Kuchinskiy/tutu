@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
     resources :railway_stations
 
-    # TODO
     resources :routes do
       patch :update_name, on: :member
       resources :railway_stations, only: [] do

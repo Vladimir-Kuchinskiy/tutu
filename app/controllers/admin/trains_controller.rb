@@ -28,14 +28,10 @@ class Admin::TrainsController < Admin::BaseController
     end
   end
 
-  # TODO remove comments refactor redirect
   def update
     respond_to do |format|
       if @train.update(train_params)
-        format.html do
-          params[:train][:number_only] ? (redirect_to admin_trains_url, notice: 'Train was successfully updated.') :
-              (redirect_to [:admin, @train], notice: 'Train was successfully updated.')
-        end
+        format.html { redirect_update }
         format.json { render :show, status: :ok, location: @train }
       else
         format.html { render :edit }
@@ -55,6 +51,14 @@ class Admin::TrainsController < Admin::BaseController
   end
 
   private
+
+  def redirect_update
+    if params[:train][:number_only]
+      redirect_to admin_trains_url, notice: 'Train was successfully updated.'
+    else
+      redirect_to [:admin, @train], notice: 'Train was successfully updated.'
+    end
+  end
 
   def set_train
     @train = Train.find(params[:id])

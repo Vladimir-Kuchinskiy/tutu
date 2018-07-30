@@ -24,11 +24,9 @@ class Admin::RoutesController < Admin::BaseController
     end
   end
 
-  # TODO extract method for redirect
   def update
     if @route.update(route_params)
-      params[:route][:name_only] ? (redirect_to admin_routes_url, notice: 'Route was successfully updated.') :
-          (redirect_to [:admin, @route], notice: 'Route was successfully updated.')
+      redirect_update
     else
       render :edit
     end
@@ -40,6 +38,14 @@ class Admin::RoutesController < Admin::BaseController
   end
 
   private
+
+  def redirect_update
+    if params[:route][:name_only]
+      redirect_to admin_routes_url, notice: 'Route was successfully updated.'
+    else
+      redirect_to [:admin, @route], notice: 'Route was successfully updated.'
+    end
+  end
 
   def route_params
     params.require(:route).permit(:name, railway_station_ids: [])

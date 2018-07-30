@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Carriage < ApplicationRecord
-  TYPES = %w[EconomyCarriage CoupeCarriage SvCarriage SeatCarriage].freeze
+  TYPES = { economy: 'EconomyCarriage', coupe: 'CoupeCarriage', sv: 'SvCarriage', seat: 'SeatCarriage' }.freeze
 
   belongs_to :train
 
@@ -10,11 +10,15 @@ class Carriage < ApplicationRecord
 
   before_validation :add_number, on: :create
 
-  scope :economy, -> { where(type: 'EconomyCarriage') }
-  scope :coupe,   -> { where(type: 'CoupeCarriage') }
-  scope :seat,    -> { where(type: 'SeatCarriage') }
-  scope :sv,      -> { where(type: 'SvCarriage') }
+  scope :economy, -> { where(type: TYPES[:economy]) }
+  scope :coupe,   -> { where(type: TYPES[:coupe]) }
+  scope :seat,    -> { where(type: TYPES[:seat]) }
+  scope :sv,      -> { where(type: TYPES[:sv]) }
   scope :ordered, ->(object) { object.sorting ? order(:number) : order(number: :desc) }
+
+  def self.seats_count(type, seat)
+    send(type).map(&:"#{seat}").inject(:+)
+  end
 
   private
 

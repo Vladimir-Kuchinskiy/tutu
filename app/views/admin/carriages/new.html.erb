@@ -5,7 +5,7 @@
 
   <div class="form-group">
     <%= form.label :type %>
-    <%= form.select :type, Carriage::TYPES, class: 'form-control' %>
+    <%= form.select :type, Carriage::TYPES.values, class: 'form-control' %>
   </div>
 
   <div class="form-group top-seats seats">
